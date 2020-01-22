@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: easytravel
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -42,7 +42,7 @@ spec:
         - containerPort: 8080
           protocol: TCP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -78,7 +78,7 @@ spec:
         - containerPort: 8280
           protocol: TCP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -112,7 +112,7 @@ spec:
         - containerPort: 28017
           protocol: TCP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
