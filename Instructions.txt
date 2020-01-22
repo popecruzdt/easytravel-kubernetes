@@ -1,0 +1,23 @@
+This folder contains a YAML file called "easytravel-k8s-deploy.yaml". This file contains every configuration needed to deploy a working easytravel deployment into an existing kubernetes cluster.
+
+You can deploy this directly from github by runinng the command: "kubectl create -f https://github.com/bstyx09/k8s-easytravel/blob/master/easytravel-k8s-deploy.yaml"
+Once you have done this easytravel should start right up with traffic running automatically. There is nothing else needed to be done to start seeing data if you are monitoring this with Dynatrace.
+
+This will create:
+- a kubernetes namespace called "easytravel"
+- 4 deployments:
+  - easytravel-frontend
+  - easytravel-backend
+  - easytravel-mongodb
+  - load generator
+3 services
+  - easytravel-frontend-service
+  - easytravel-backend-service
+  - easytravel-mongodb-service
+
+You can confirm that these were all created succesfully by running the command:
+"kubectl get all -n easytravel"
+
+
+The easytravel frontend service is a "NodePort" service that will listen for external traffic on port 30080. You don't need to run traffic to it manually but you could use this port to manually send traffic to it. You'll use the IP or DNS of any worker node in the cluster as the base URL for that port.
+
