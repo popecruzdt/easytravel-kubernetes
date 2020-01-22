@@ -1,7 +1,14 @@
-This folder contains a YAML file called "easytravel-k8s-deploy.yaml". This file contains every configuration needed to deploy a working easytravel deployment into an existing kubernetes cluster.
+This repository contains a YAML file called "easytravel-k8s-deploy.yaml". This file contains every configuration needed to deploy a working easytravel deployment into an existing kubernetes cluster.
 
-You can deploy this directly from github by runinng the command: "kubectl create -f https://github.com/bstyx09/k8s-easytravel/blob/master/easytravel-k8s-deploy.yaml"
+To deploy Easytravel using this file, first download the file to the box where you will be executing your "kubectl" commands from.
+Once you have done that you can deploy Easytravel to the cluster using the command: "kubectl create -f easytravel-k8s-deploy.yaml"
+
+Note that you will need to make sure you reference the correct path for the downloaded yaml file.
+
+
+-----------------------
 Once you have done this easytravel should start right up with traffic running automatically. There is nothing else needed to be done to start seeing data if you are monitoring this with Dynatrace.
+The loadgenerator will automatically start running traffic on the application
 
 This will create:
 - a kubernetes namespace called "easytravel"
@@ -18,6 +25,5 @@ This will create:
 You can confirm that these were all created succesfully by running the command:
 "kubectl get all -n easytravel"
 
-
-The easytravel frontend service is a "NodePort" service that will listen for external traffic on port 30080. You don't need to run traffic to it manually but you could use this port to manually send traffic to it. You'll use the IP or DNS of any worker node in the cluster as the base URL for that port.
+If you want to run traffic manually to your shiny new easytravel application, you can access it manually using the address: "http://<kubernetes-worker-node>:30080" where <kubernetes-worker-node> is the IP or DNS entry for any worker node in your Kubernetes cluster
 
