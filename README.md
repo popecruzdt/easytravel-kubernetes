@@ -1,3 +1,5 @@
+# Kubernetes EasyTravel
+
 This repository contains a YAML file called "easytravel-k8s-deploy.yaml". This file contains every configuration needed to deploy a working easytravel deployment into an existing kubernetes cluster.
 
 You can deploy Easytravel to the cluster using the command: "kubectl create -f https://raw.githubusercontent.com/bstyx09/Kubernetes-Easytravel/master/easytravel-k8s-deploy.yaml"
