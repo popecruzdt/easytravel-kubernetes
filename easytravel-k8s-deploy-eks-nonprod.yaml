@@ -1,0 +1,209 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: easytravel-nonprod
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-backend
+  name: easytravel-backend
+  namespace: easytravel-nonprod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-backend
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        easytravel-tier: easytravel-backend
+        tier: backend
+      name: easytravel-backend
+    spec:
+      containers:
+      - env:
+        - name: ET_DATABASE_LOCATION
+          value: easytravel-mongodb-service:27017
+        image: dynatrace/easytravel-backend:2.0.0.3256
+        imagePullPolicy: Always
+        name: easytravel-backend
+        ports:
+        - containerPort: 8009
+          protocol: TCP
+        - containerPort: 8005
+          protocol: TCP
+        - containerPort: 8080
+          protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-frontend
+  name: easytravel-frontend
+  namespace: easytravel-nonprod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        easytravel-tier: easytravel-frontend
+        tier: frontend
+    spec:
+      containers:
+      - env:
+        - name: ET_BACKEND_URL
+          value: http://easytravel-backend-service:8080
+        image: dynatrace/easytravel-frontend
+        imagePullPolicy: Always
+        name: easytravel-frontend
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8280
+          protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-mongodb
+  name: easytravel-mongodb
+  namespace: easytravel-nonprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-mongodb
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        easytravel-tier: easytravel-mongodb
+      labels:
+        easytravel-tier: easytravel-mongodb
+        tier: database
+    spec:
+      containers:
+      - image: dynatrace/easytravel-mongodb:2.0.0.3156
+        name: easytravel-mongodb
+        ports:
+        - containerPort: 27017
+          protocol: TCP
+        - containerPort: 28017
+          protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: loadgenerator
+  name: loadgenerator
+  namespace: easytravel-nonprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadgenerator
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: loadgenerator
+    spec:
+      containers:
+      - env:
+        - name: ET_FRONTEND_URL
+          value: http://easytravel-frontend-service:8080
+        - name: ET_PROBLEMS
+          value: BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LoginProblems,MobileErrors,TravellersOptionBox
+        image: dynatrace/easytravel-loadgen:latest
+        name: easytravel-loadgen
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-backend-service
+  name: easytravel-backend-service
+  namespace: easytravel-nonprod
+spec:
+  ports:
+  - name: port5
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: port3
+    port: 8009
+    protocol: TCP
+    targetPort: 8009
+  - name: port4
+    port: 8005
+    protocol: TCP
+    targetPort: 8005
+  selector:
+    easytravel-tier: easytravel-backend
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-frontend
+  name: easytravel-frontend-service
+  namespace: easytravel-nonprod
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - protocol: TCP
+    targetPort: 8080
+  selector:
+    easytravel-tier: easytravel-frontend
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-mongodb
+  name: easytravel-mongodb-service
+  namespace: easytravel-nonprod
+spec:
+  ports:
+  - name: "27017"
+    port: 27017
+    protocol: TCP
+    targetPort: 27017
+  - name: "28017"
+    port: 28017
+    protocol: TCP
+    targetPort: 28017
+  selector:
+    easytravel-tier: easytravel-mongodb
+  sessionAffinity: None
+  type: ClusterIP
