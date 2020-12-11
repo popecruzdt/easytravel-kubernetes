@@ -181,6 +181,7 @@ spec:
   ports:
   - protocol: TCP
     targetPort: 8080
+    port: 8080
   selector:
     easytravel-tier: easytravel-frontend
   sessionAffinity: None
