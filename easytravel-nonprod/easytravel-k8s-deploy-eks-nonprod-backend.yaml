@@ -32,7 +32,7 @@ spec:
         name: easytravel-backend
         resources:
           limits:
-            memory: "8Gi"
+            memory: "800Mi"
         ports:
         - containerPort: 8009
           protocol: TCP
