@@ -56,5 +56,5 @@ spec:
     port: 8080
   selector:
     easytravel-tier: easytravel-backend
-  sessionAffinity: ClientIP
+  sessionAffinity: None
   type: LoadBalancer

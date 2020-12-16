@@ -49,5 +49,5 @@ spec:
     port: 80
   selector:
     easytravel-tier: easytravel-nginx
-  sessionAffinity: ClientIP
+  sessionAffinity: None
   type: LoadBalancer
