@@ -39,7 +39,7 @@ kind: Service
 metadata:
   labels:
     easytravel-tier: easytravel-nginx-service
-  name: easytravel-nginx-service
+  name: easytravel-nonprod-nginx-service
   namespace: easytravel-nonprod
 spec:
   externalTrafficPolicy: Cluster

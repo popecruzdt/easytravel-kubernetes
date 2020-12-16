@@ -24,7 +24,7 @@ spec:
       containers:
       - env:
         - name: ET_FRONTEND_URL
-          value: http://easytravel-frontend-service:8080
+          value: http://easytravel-nonprod-nginx-service:80
         - name: ET_BACKEND_URL
           value: http://easytravel-backend-service:8080
         - name: ET_PROBLEMS
