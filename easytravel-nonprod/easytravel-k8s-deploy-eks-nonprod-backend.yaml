@@ -49,20 +49,12 @@ metadata:
   name: easytravel-backend-service
   namespace: easytravel-nonprod
 spec:
+  externalTrafficPolicy: Cluster
   ports:
-  - name: port5
-    port: 8080
-    protocol: TCP
+  - protocol: TCP
     targetPort: 8080
-  - name: port3
-    port: 8009
-    protocol: TCP
-    targetPort: 8009
-  - name: port4
-    port: 8005
-    protocol: TCP
-    targetPort: 8005
+    port: 8080
   selector:
     easytravel-tier: easytravel-backend
   sessionAffinity: None
-  type: ClusterIP
+  type: LoadBalancer
