@@ -7,7 +7,7 @@ metadata:
   name: easytravel-backend
   namespace: easytravel-nonprod
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       easytravel-tier: easytravel-backend
@@ -32,7 +32,7 @@ spec:
         name: easytravel-backend
         resources:
           limits:
-            memory: "768Mi"
+            memory: "1024Mi"
         ports:
         - containerPort: 8009
           protocol: TCP
