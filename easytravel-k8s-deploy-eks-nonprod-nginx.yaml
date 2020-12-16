@@ -42,12 +42,12 @@ metadata:
   name: easytravel-nginx-service
   namespace: easytravel-nonprod
 spec:
+  externalTrafficPolicy: Cluster
   ports:
-  - name: port1
-    port: 80
-    protocol: TCP
+  - protocol: TCP
     targetPort: 80
+    port: 80
   selector:
     easytravel-tier: easytravel-nginx
   sessionAffinity: None
-  type: ClusterIP
+  type: LoadBalancer
