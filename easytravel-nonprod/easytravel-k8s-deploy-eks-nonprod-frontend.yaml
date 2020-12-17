@@ -7,7 +7,7 @@ metadata:
   name: easytravel-frontend
   namespace: easytravel-nonprod
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       easytravel-tier: easytravel-frontend
