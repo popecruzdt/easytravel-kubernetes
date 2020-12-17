@@ -30,9 +30,6 @@ spec:
         image: dynatrace/easytravel-backend:2.0.0.3256
         imagePullPolicy: Always
         name: easytravel-backend
-        resources:
-          limits:
-            memory: "1024Mi"
         ports:
         - containerPort: 8009
           protocol: TCP
