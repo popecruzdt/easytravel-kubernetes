@@ -27,6 +27,8 @@ spec:
       - env:
         - name: ET_DATABASE_LOCATION
           value: easytravel-mongodb-service:27017
+        - name: JAVA_OPTS
+          value: -xms256m -xmx1024m
         image: dynatrace/easytravel-backend:2.0.0.3256
         imagePullPolicy: Always
         name: easytravel-backend
@@ -39,9 +41,9 @@ spec:
           protocol: TCP
         resources:
           requests:
-            memory: "1536Mi"
+            memory: "1024Mi"
           limits:
-            memory: "1536Mi"
+            memory: "1024Mi"
 ---
 apiVersion: v1
 kind: Service
