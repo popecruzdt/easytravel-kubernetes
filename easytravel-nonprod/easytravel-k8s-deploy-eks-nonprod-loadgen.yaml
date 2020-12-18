@@ -28,6 +28,6 @@ spec:
         - name: ET_BACKEND_URL
           value: http://easytravel-backend-service:8080
         - name: ET_PROBLEMS
-          value: SlowUserLogin
+          value: LargeMemoryLeak
         image: dynatrace/easytravel-loadgen:latest
         name: easytravel-loadgen
