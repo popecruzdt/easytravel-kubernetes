@@ -41,7 +41,7 @@ spec:
           requests:
             memory: "1024Mi"
           limits:
-            memory: "1024i"
+            memory: "1024Mi"
 ---
 apiVersion: v1
 kind: Service
