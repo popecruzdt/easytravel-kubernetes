@@ -34,6 +34,11 @@ spec:
           protocol: TCP
         - containerPort: 8280
           protocol: TCP
+        resources:
+          requests:
+            cpu: "400m"
+          limits:
+            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
