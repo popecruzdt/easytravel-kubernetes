@@ -22,8 +22,6 @@ spec:
         easytravel-tier: easytravel-backend
         tier: backend
       name: easytravel-backend
-      annotations:
-        build: LargeMemoryLeak
     spec:
       containers:
       - env:
