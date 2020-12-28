@@ -1,0 +1,83 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-backend
+  name: easytravel-backend
+  namespace: easytravel-nonprod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-backend
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        easytravel-tier: easytravel-backend
+        tier: backend
+      name: easytravel-backend
+      annotations:
+        build: LoginProblems
+    spec:
+      containers:
+      - env:
+        - name: ET_DATABASE_LOCATION
+          value: easytravel-mongodb-service:27017
+        - name: JAVA_OPTS
+          value: -Xms256m -Xmx512m
+        image: dynatrace/easytravel-backend:2.0.0.3256
+        imagePullPolicy: Always
+        name: easytravel-backend
+        ports:
+        - containerPort: 8009
+          protocol: TCP
+        - containerPort: 8005
+          protocol: TCP
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "700Mi"
+            cpu: "250m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: loadgenerator
+  name: loadgenerator
+  namespace: easytravel-nonprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadgenerator
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: loadgenerator
+    spec:
+      containers:
+      - env:
+        - name: ET_FRONTEND_URL
+          value: http://easytravel-nonprod-nginx-service:80
+        - name: ET_BACKEND_URL
+          value: http://easytravel-backend-service:8080
+        - name: ET_PROBLEMS
+          value: LoginProblems
+        image: dynatrace/easytravel-loadgen:latest
+        name: easytravel-loadgen
