@@ -9,7 +9,7 @@ metadata:
   annotations:
     build: LoginProblems
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       easytravel-tier: easytravel-backend
