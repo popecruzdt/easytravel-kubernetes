@@ -23,6 +23,8 @@ spec:
       labels:
         easytravel-tier: easytravel-backend
         tier: backend
+      annotations:
+        build: stable
       name: easytravel-backend
     spec:
       containers:
