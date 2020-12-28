@@ -4,6 +4,8 @@ kind: Deployment
 metadata:
   labels:
     easytravel-tier: easytravel-backend
+  annotations:
+    build: LargeMemoryLeak
   name: easytravel-backend
   namespace: easytravel-nonprod
 spec:
