@@ -43,10 +43,10 @@ spec:
           protocol: TCP
         resources:
           requests:
-            memory: "700Mi"
+            memory: "680Mi"
             cpu: "1"
           limits:
-            memory: "700Mi"
+            memory: "680Mi"
             cpu: "1"
 ---
 apiVersion: apps/v1
