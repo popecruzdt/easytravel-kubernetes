@@ -44,8 +44,10 @@ spec:
         resources:
           requests:
             memory: "700Mi"
+            cpu: "1"
           limits:
             memory: "700Mi"
+            cpu: "1"
 ---
 apiVersion: apps/v1
 kind: Deployment
