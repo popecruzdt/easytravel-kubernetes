@@ -14,10 +14,7 @@ spec:
     matchLabels:
       easytravel-tier: easytravel-backend
   strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       labels:
