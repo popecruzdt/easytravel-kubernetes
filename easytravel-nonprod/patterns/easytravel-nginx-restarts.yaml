@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-nginx
+  name: easytravel-nginx
+  namespace: easytravel-nonprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-nginx
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        easytravel-tier: easytravel-nginx
+        tier: nginx
+      name: easytravel-nginx
+    spec:
+      containers:
+      - env:
+        - name: ET_FRONTEND_LOCATION
+          value: easytravel-frontend-service:8080
+        image: dynatrace/easytravel-nginx:latest
+        imagePullPolicy: Always
+        name: easytravel-nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          requests:
+            memory: "90Mi"
+          limits:
+            memory: "100Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-nginx-service
+  name: easytravel-nonprod-nginx-service
+  namespace: easytravel-nonprod
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - protocol: TCP
+    targetPort: 80
+    port: 80
+  selector:
+    easytravel-tier: easytravel-nginx
+  sessionAffinity: None
+  type: LoadBalancer
