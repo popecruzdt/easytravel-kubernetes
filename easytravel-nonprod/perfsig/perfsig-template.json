@@ -1,0 +1,18 @@
+{
+    "EvaluationMins": 5,
+	"Metrics": [
+	    {
+	    "ID": "builtin:service.response.time:percentile(50)","RelativeThreshold":100000.0,"ValidationMethod":"relative"
+	    },
+		{
+	    "ID": "builtin:service.response.time:percentile(90)","RelativeThreshold":500000.0,"ValidationMethod":"relative"
+	    },
+		{
+	    "ID": "builtin:service.response.time:(avg)","RelativeThreshold":100000.0,"ValidationMethod":"relative"
+	    },
+		{
+		"ID": "builtin:service.errors.total.rate:(avg)","StaticThreshold":1.0,"ValidationMethod":"static"
+		}
+	 ],
+	"ServiceID": ""
+}

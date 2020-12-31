@@ -1,12 +1,6 @@
 {
     "EvaluationMins": 5,
 	"Metrics": [
-	    {
-	    "ID": "builtin:service.response.time:percentile(50)","RelativeThreshold":100000.0,"ValidationMethod":"relative"
-	    },
-		{
-	    "ID": "builtin:service.response.time:percentile(90)","RelativeThreshold":100000.0,"ValidationMethod":"relative"
-	    },
 		{
 	    "ID": "builtin:service.response.time:(avg)","RelativeThreshold":100000.0,"ValidationMethod":"relative"
 	    },
