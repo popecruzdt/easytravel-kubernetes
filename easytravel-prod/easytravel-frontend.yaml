@@ -26,6 +26,8 @@ spec:
       - env:
         - name: ET_BACKEND_URL
           value: http://easytravel-backend-service:8080
+        - name: JAVA_OPTS
+          value: -Xms256m -Xmx512m
         image: dynatrace/easytravel-frontend
         imagePullPolicy: Always
         name: easytravel-frontend
