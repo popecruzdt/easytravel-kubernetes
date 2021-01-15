@@ -43,9 +43,9 @@ spec:
           protocol: TCP
         resources:
           requests:
-            memory: "680Mi"
+            memory: "710Mi"
           limits:
-            memory: "680Mi"
+            memory: "710Mi"
 ---
 apiVersion: apps/v1
 kind: Deployment
