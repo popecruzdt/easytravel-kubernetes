@@ -27,7 +27,7 @@ spec:
       - env:
         - name: ET_FRONTEND_LOCATION
           value: easytravel-frontend-service:8080
-        image: dynatrace/easytravel-nginx:2.0.0.3250
+        image: dynatrace/easytravel-nginx:2.0.0.3256
         imagePullPolicy: Always
         name: easytravel-nginx
         ports:

@@ -28,7 +28,7 @@ spec:
           value: http://easytravel-backend-service:8080
         - name: JAVA_OPTS
           value: -Xms256m -Xmx512m
-        image: dynatrace/easytravel-frontend
+        image: dynatrace/easytravel-frontend:2.0.0.3256
         imagePullPolicy: Always
         name: easytravel-frontend
         ports:
