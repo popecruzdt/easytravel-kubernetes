@@ -63,12 +63,13 @@ metadata:
   name: oneagent-mongodb
   namespace: easytravel-prod
 spec:
+  clusterIP: 127.0.0.1
   ports:
   - name: "27017"
-    port: 27017
+    port: 17017
     protocol: TCP
     targetPort: 27017
   selector:
     easytravel-tier: easytravel-mongodb
   sessionAffinity: None
-  type: NodePort
+  type: ClusterIP
