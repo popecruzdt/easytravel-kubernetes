@@ -54,22 +54,3 @@ spec:
     easytravel-tier: easytravel-mongodb
   sessionAffinity: None
   type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    easytravel-tier: easytravel-mongodb
-  name: oneagent-mongodb
-  namespace: easytravel-prod
-spec:
-  clusterIP: localhost
-  ports:
-  - name: "27017"
-    port: 17017
-    protocol: TCP
-    targetPort: 27017
-  selector:
-    easytravel-tier: easytravel-mongodb
-  sessionAffinity: None
-  type: ClusterIP
