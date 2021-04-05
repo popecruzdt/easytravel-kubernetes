@@ -2,8 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    annotation-position: Deployment
   labels:
     easytravel-tier: easytravel-nginx
+    label-position: Deployment
   name: easytravel-nginx
   namespace: easytravel-nonprod
 spec:
@@ -18,8 +21,11 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        annotation-position: Template
       labels:
         easytravel-tier: easytravel-nginx
+        label-position: Template
         tier: nginx
       name: easytravel-nginx
     spec:
