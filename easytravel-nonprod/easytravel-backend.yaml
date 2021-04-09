@@ -21,6 +21,7 @@ spec:
       labels:
         easytravel-tier: easytravel-backend
         tier: backend
+        team: easytravel-devops
       name: easytravel-backend
     spec:
       containers:

@@ -27,6 +27,7 @@ spec:
         easytravel-tier: easytravel-nginx
         label-position: Template
         tier: nginx
+        team: easytravel-devops
       name: easytravel-nginx
     spec:
       containers:
