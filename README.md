@@ -25,3 +25,6 @@ You can confirm that these were all created succesfully by running the command:
 
 If you want to run traffic manually to your shiny new easytravel application, you can access it manually using the address: ``http://<kubernetes-worker-node>:30080`` where ``<kubernetes-worker-node>`` is the IP or DNS entry for any worker node in your Kubernetes cluster
 
+# LICENSE
+easyTravel Docker is licensed under the MIT License.  For more information please refer to the easyTravel-Docker repository.
+https://github.com/Dynatrace/easyTravel-Docker
