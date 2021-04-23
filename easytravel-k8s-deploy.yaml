@@ -47,6 +47,7 @@ kind: Deployment
 metadata:
   labels:
     easytravel-tier: easytravel-frontend
+    easytravel-type: classic
   name: easytravel-frontend
   namespace: easytravel
 spec:
@@ -54,6 +55,7 @@ spec:
   selector:
     matchLabels:
       easytravel-tier: easytravel-frontend
+      easytravel-type: classic
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -63,6 +65,7 @@ spec:
     metadata:
       labels:
         easytravel-tier: easytravel-frontend
+        easytravel-type: classic
         tier: frontend
     spec:
       containers:
@@ -76,6 +79,43 @@ spec:
         - containerPort: 8080
           protocol: TCP
         - containerPort: 8280
+          protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-frontend
+    easytravel-type: angular
+  name: easytravel-angular-frontend
+  namespace: easytravel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-frontend
+      easytravel-type: angular
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        easytravel-tier: easytravel-frontend
+        easytravel-type: angular
+        tier: frontend
+    spec:
+      containers:
+      - env:
+        - name: ET_BACKEND_URL
+          value: http://easytravel-backend-service:8080
+        image: dynatrace/easytravel-angular-frontend
+        imagePullPolicy: Always
+        name: easytravel-angular-frontend
+        ports:
+        - containerPort: 8080
           protocol: TCP
 ---
 apiVersion: apps/v1
@@ -174,6 +214,7 @@ kind: Service
 metadata:
   labels:
     easytravel-tier: easytravel-frontend
+    easytravel-type: classic
   name: easytravel-frontend-service
   namespace: easytravel
 spec:
@@ -191,6 +232,29 @@ spec:
     targetPort: 8280
   selector:
     easytravel-tier: easytravel-frontend
+    easytravel-type: classic
+  sessionAffinity: None
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-frontend
+    easytravel-type: angular
+  name: easytravel-frontend-service
+  namespace: easytravel
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: web
+    nodePort: 30081
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    easytravel-tier: easytravel-frontend
+    easytravel-type: angular
   sessionAffinity: None
   type: NodePort
 ---
