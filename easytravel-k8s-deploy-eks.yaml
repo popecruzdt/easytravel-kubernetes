@@ -47,6 +47,7 @@ kind: Deployment
 metadata:
   labels:
     easytravel-tier: easytravel-frontend
+    easytravel-type: classic
   name: easytravel-frontend
   namespace: easytravel
 spec:
@@ -63,6 +64,7 @@ spec:
     metadata:
       labels:
         easytravel-tier: easytravel-frontend
+        easytravel-type: classic
         tier: frontend
     spec:
       containers:
@@ -211,6 +213,7 @@ kind: Service
 metadata:
   labels:
     easytravel-tier: easytravel-frontend
+    easytravel-type: classic
   name: easytravel-frontend-service
   namespace: easytravel
 spec:

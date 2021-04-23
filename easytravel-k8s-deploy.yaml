@@ -242,7 +242,7 @@ metadata:
   labels:
     easytravel-tier: easytravel-frontend
     easytravel-type: angular
-  name: easytravel-frontend-service
+  name: easytravel-angular-frontend-service
   namespace: easytravel
 spec:
   externalTrafficPolicy: Cluster
