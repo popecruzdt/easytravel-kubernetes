@@ -20,9 +20,13 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        version: 2.0.0.3256
+        build: stable
       labels:
         easytravel-tier: easytravel-backend
         tier: backend
+        team: easytravel-devops
       name: easytravel-backend
     spec:
       containers:
