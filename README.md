@@ -10,20 +10,24 @@ The loadgenerator will automatically start running traffic on the application
 
 This will create:
 - a kubernetes namespace called "easytravel"
-- 4 deployments:
+- 5 deployments:
   - easytravel-frontend
+  - easytravel-angular-frontend
   - easytravel-backend
   - easytravel-mongodb
   - load generator
-3 services
+- 4 services:
   - easytravel-frontend-service
+  - easytravel-angular-frontend-service
   - easytravel-backend-service
   - easytravel-mongodb-service
 
 You can confirm that these were all created succesfully by running the command:
 ``kubectl get all -n easytravel``
 
-If you want to run traffic manually to your shiny new easytravel application, you can access it manually using the address: ``http://<kubernetes-worker-node>:30080`` where ``<kubernetes-worker-node>`` is the IP or DNS entry for any worker node in your Kubernetes cluster
+If you want to run traffic manually to your shiny new easytravel application, you can access it manually using the address: ``http://<kubernetes-worker-node>:30080`` where ``<kubernetes-worker-node>`` is the IP or DNS entry for any worker node in your Kubernetes cluster.
+
+The Angular frontend is available at ``http://<kubernetes-worker-node>:30081``
 
 # LICENSE
 easyTravel Docker is licensed under the MIT License.  For more information please refer to the easyTravel-Docker repository.
