@@ -22,6 +22,7 @@ spec:
     metadata:
       annotations:
         version: 2.0.0.3273
+        build: LoginProblems
       labels:
         easytravel-tier: easytravel-backend
         tier: backend
