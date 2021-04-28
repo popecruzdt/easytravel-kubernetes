@@ -20,9 +20,13 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        version: 2.0.0.3273
+        build: LargeMemoryLeak
       labels:
         easytravel-tier: easytravel-backend
         tier: backend
+        team: easytravel-devops
       name: easytravel-backend
     spec:
       containers:
@@ -31,7 +35,7 @@ spec:
           value: easytravel-mongodb-service:27017
         - name: JAVA_OPTS
           value: -Xms256m -Xmx512m
-        image: dynatrace/easytravel-backend:2.0.0.3256
+        image: dynatrace/easytravel-backend:2.0.0.3273
         imagePullPolicy: Always
         name: easytravel-backend
         ports:
