@@ -22,6 +22,9 @@ spec:
         easytravel-tier: easytravel-backend
         tier: backend
         team: easytravel-devops
+        app.kubernetes.io/name: easytravel-backend
+        app.kubernetes.io/part-of: easytravel
+        app.kubernetes.io/version: 2.0.0.3256
       name: easytravel-backend
     spec:
       containers:
