@@ -23,6 +23,9 @@ spec:
       labels:
         easytravel-tier: easytravel-mongodb
         tier: database
+        app.kubernetes.io/name: easytravel-mongodb
+        app.kubernetes.io/part-of: easytravel
+        app.kubernetes.io/version: 2.0.0.3156
     spec:
       containers:
       - image: dynatrace/easytravel-mongodb:2.0.0.3156
