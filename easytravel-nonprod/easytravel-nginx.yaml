@@ -28,13 +28,16 @@ spec:
         label-position: Template
         tier: nginx
         team: easytravel-devops
+        app.kubernetes.io/name: easytravel-nginx
+        app.kubernetes.io/part-of: easytravel
+        app.kubernetes.io/version: 2.0.0.3256
       name: easytravel-nginx
     spec:
       containers:
       - env:
         - name: ET_FRONTEND_LOCATION
           value: easytravel-frontend-service:8080
-        image: dynatrace/easytravel-nginx:latest
+        image: dynatrace/easytravel-nginx:3256
         imagePullPolicy: Always
         name: easytravel-nginx
         ports:
