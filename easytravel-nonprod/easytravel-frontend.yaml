@@ -24,7 +24,7 @@ spec:
         team: easytravel-devops
         app.kubernetes.io/name: easytravel-frontend
         app.kubernetes.io/part-of: easytravel
-        app.kubernetes.io/version: 2.0.0.3256
+        app.kubernetes.io/version: 2.0.0.3322
     spec:
       containers:
       - env:
@@ -32,7 +32,7 @@ spec:
           value: http://easytravel-backend-service:8080
         - name: JAVA_OPTS
           value: -Xms256m -Xmx512m
-        image: dynatrace/easytravel-frontend
+        image: dynatrace/easytravel-frontend:2.0.0.3322
         imagePullPolicy: Always
         name: easytravel-frontend
         ports:
