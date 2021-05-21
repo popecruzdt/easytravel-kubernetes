@@ -28,6 +28,14 @@ spec:
     spec:
       containers:
       - env:
+        - name: ET_FRONTEND_LOCATION
+          value: easytravel-frontend-service:8080
+        - name: DT_RELEASE_VERSION
+          value: 2.0.0.3322
+        - name: DT_RELEASE_STAGE
+          value: easytravel-nonprod
+        - name: DT_RELEASE_PRODUCT
+          value: easytravel
         - name: ET_BACKEND_URL
           value: http://easytravel-backend-service:8080
         - name: JAVA_OPTS

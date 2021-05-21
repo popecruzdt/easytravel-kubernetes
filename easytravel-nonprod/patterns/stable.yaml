@@ -34,6 +34,14 @@ spec:
     spec:
       containers:
       - env:
+        - name: ET_FRONTEND_LOCATION
+          value: easytravel-frontend-service:8080
+        - name: DT_RELEASE_VERSION
+          value: 2.0.0.3256
+        - name: DT_RELEASE_STAGE
+          value: easytravel-nonprod
+        - name: DT_RELEASE_PRODUCT
+          value: easytravel
         - name: ET_DATABASE_LOCATION
           value: easytravel-mongodb-service:27017
         - name: JAVA_OPTS
