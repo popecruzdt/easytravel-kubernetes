@@ -23,6 +23,7 @@ spec:
     metadata:
       annotations:
         annotation-position: Template
+        version: 2.0.0.3256
       labels:
         easytravel-tier: easytravel-nginx
         label-position: Template
@@ -30,7 +31,7 @@ spec:
         team: easytravel-devops
         app.kubernetes.io/name: easytravel-nginx
         app.kubernetes.io/part-of: easytravel
-        app.kubernetes.io/version: 2.0.0.3322
+        app.kubernetes.io/version: 2.0.0.3256
       name: easytravel-nginx
     spec:
       containers:
