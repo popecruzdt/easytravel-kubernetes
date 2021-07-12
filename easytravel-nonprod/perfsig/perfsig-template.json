@@ -1,21 +1,22 @@
 {
     "EvaluationMins": 5,
 	"PSMetrics": {
-	    	"builtin:service.response.time:percentile(50)": {
+		"builtin:service.response.time:percentile(50)": {
 			"RelativeThreshold":100000.0,
 			"ValidationMethod":"relative"
-	    	},
+		},
 		"builtin:service.response.time:percentile(90)": {
 			"RelativeThreshold":100000.0,
 			"ValidationMethod":"relative"
-	    	},
+		},
 		"builtin:service.response.time:(avg)": {
 		    "RelativeThreshold":100000.0,
 			"ValidationMethod":"relative"
-	    	},
-	    	"builtin:service.errors.total.rate:(avg)": {
+		},
+		"builtin:service.errors.total.rate:(avg)": {
 			"StaticThreshold":1.0,
 			"ValidationMethod":"static"
-	    	}
-	},": ""
+		}
+	},
+    "ServiceID": ""
 }
