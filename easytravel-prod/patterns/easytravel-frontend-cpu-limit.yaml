@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-frontend
+  name: easytravel-frontend
+  namespace: easytravel-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        easytravel-tier: easytravel-frontend
+        tier: frontend
+        team: easytravel-devops
+        app.kubernetes.io/name: easytravel-frontend
+        app.kubernetes.io/part-of: easytravel
+        app.kubernetes.io/version: 2.0.0.3256
+      annotations:
+        version: 2.0.0.3256
+    spec:
+      containers:
+      - env:
+        - name: ET_BACKEND_URL
+          value: http://easytravel-backend-service:8080
+        - name: JAVA_OPTS
+          value: -Xms256m -Xmx512m
+        image: dynatrace/easytravel-frontend:2.0.0.3256
+        imagePullPolicy: Always
+        name: easytravel-frontend
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8280
+          protocol: TCP
+        resources:
+          requests:
+            memory: "700Mi"
+            cpu: "100m"
+          limits:
+            memory: "700Mi"
+            cpu: "100m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-frontend
+  name: easytravel-frontend-service
+  namespace: easytravel-prod
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: port1
+    nodePort: 30080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: port2
+    nodePort: 30280
+    port: 8280
+    protocol: TCP
+    targetPort: 8280
+  selector:
+    easytravel-tier: easytravel-frontend
+  sessionAffinity: None
+  type: NodePort
