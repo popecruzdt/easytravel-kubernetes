@@ -35,6 +35,8 @@ spec:
           value: easytravel-frontend-service:8080
         - name: DT_RELEASE_VERSION
           value: 2.0.0.3256
+        - name: DT_RELEASE_BUILD_VERSION
+          value: 2.0.0.3256
         - name: DT_RELEASE_STAGE
           value: easytravel-nonprod
         - name: DT_RELEASE_PRODUCT
