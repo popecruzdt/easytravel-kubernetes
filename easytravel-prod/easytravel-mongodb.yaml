@@ -29,7 +29,16 @@ spec:
         app.kubernetes.io/version: 2.0.0.3156
     spec:
       containers:
-      - image: dynatrace/easytravel-mongodb:2.0.0.3156
+      - env:
+        - name: DT_RELEASE_VERSION
+          value: 2.0.0.3156
+        - name: DT_RELEASE_BUILD_VERSION
+          value: 2.0.0.3156
+        - name: DT_RELEASE_STAGE
+          value: easytravel-prod
+        - name: DT_RELEASE_PRODUCT
+          value: easytravel
+        image: dynatrace/easytravel-mongodb:2.0.0.3156
         name: easytravel-mongodb
         ports:
         - containerPort: 27017

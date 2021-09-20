@@ -34,6 +34,14 @@ spec:
           value: http://easytravel-backend-service:8080
         - name: JAVA_OPTS
           value: -Xms256m -Xmx512m
+        - name: DT_RELEASE_VERSION
+          value: 2.0.0.3256
+        - name: DT_RELEASE_BUILD_VERSION
+          value: 2.0.0.3256
+        - name: DT_RELEASE_STAGE
+          value: easytravel-prod
+        - name: DT_RELEASE_PRODUCT
+          value: easytravel
         image: dynatrace/easytravel-frontend:2.0.0.3256
         imagePullPolicy: Always
         name: easytravel-frontend
