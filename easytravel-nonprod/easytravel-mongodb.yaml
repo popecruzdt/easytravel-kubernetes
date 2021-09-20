@@ -29,6 +29,13 @@ spec:
         app.kubernetes.io/version: 2.0.0.3156
     spec:
       containers:
+      - image: dynatrace/easytravel-mongodb:2.0.0.3156
+        name: easytravel-mongodb
+        ports:
+        - containerPort: 27017
+          protocol: TCP
+        - containerPort: 28017
+          protocol: TCP
       - env:
         - name: DT_RELEASE_VERSION
           value: 2.0.0.3156
@@ -38,13 +45,6 @@ spec:
           value: easytravel-nonprod
         - name: DT_RELEASE_PRODUCT
           value: easytravel
-      - image: dynatrace/easytravel-mongodb:2.0.0.3156
-        name: easytravel-mongodb
-        ports:
-        - containerPort: 27017
-          protocol: TCP
-        - containerPort: 28017
-          protocol: TCP
 ---
 apiVersion: v1
 kind: Service
