@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       annotations:
-        version: 2.0.0.3273
+        version: 2.0.0.3356
         build: LoginProblems
       labels:
         easytravel-tier: easytravel-backend
@@ -29,7 +29,7 @@ spec:
         team: easytravel-devops
         app.kubernetes.io/name: easytravel-backend
         app.kubernetes.io/part-of: easytravel
-        app.kubernetes.io/version: 2.0.0.3273
+        app.kubernetes.io/version: 2.0.0.3356
       name: easytravel-backend
     spec:
       containers:
@@ -37,9 +37,9 @@ spec:
         - name: ET_FRONTEND_LOCATION
           value: easytravel-frontend-service:8080
         - name: DT_RELEASE_VERSION
-          value: 2.0.0.3273
+          value: 2.0.0.3356
         - name: DT_RELEASE_BUILD_VERSION
-          value: 2.0.0.3273
+          value: 2.0.0.3356
         - name: DT_RELEASE_STAGE
           value: easytravel-nonprod
         - name: DT_RELEASE_PRODUCT
@@ -48,7 +48,7 @@ spec:
           value: easytravel-mongodb-service:27017
         - name: JAVA_OPTS
           value: -Xms257m -Xmx512m
-        image: dynatrace/easytravel-backend:2.0.0.3273
+        image: dynatrace/easytravel-backend:2.0.0.3356
         imagePullPolicy: Always
         name: easytravel-backend
         ports:
