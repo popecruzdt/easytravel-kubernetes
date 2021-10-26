@@ -31,7 +31,7 @@ spec:
       - env:
         - name: ET_DATABASE_LOCATION
           value: easytravel-mongodb-service:27017
-        image: dynatrace/easytravel-backend:2.0.0.3256
+        image: dynatrace/easytravel-backend
         imagePullPolicy: Always
         name: easytravel-backend
         ports:
@@ -144,7 +144,7 @@ spec:
         tier: database
     spec:
       containers:
-      - image: dynatrace/easytravel-mongodb:2.0.0.3156
+      - image: dynatrace/easytravel-mongodb
         name: easytravel-mongodb
         ports:
         - containerPort: 27017
