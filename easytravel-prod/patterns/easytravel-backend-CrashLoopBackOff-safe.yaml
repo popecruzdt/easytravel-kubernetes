@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-backend
+  annotations:
+    build: CrashLoopBackOff
+  name: easytravel-backend
+  namespace: easytravel-prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-backend
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        version: 2.0.0.3356
+        build: CrashLoopBackOff
+      labels:
+        easytravel-tier: easytravel-backend
+        tier: backend
+        team: easytravel-devops
+        app.kubernetes.io/name: easytravel-backend
+        app.kubernetes.io/part-of: easytravel
+        app.kubernetes.io/version: 2.0.0.3356
+      name: easytravel-backend
+    spec:
+      containers:
+      - env:
+        - name: ET_FRONTEND_LOCATION
+          value: easytravel-frontend-service:8080
+        - name: DT_RELEASE_VERSION
+          value: 2.0.0.3356
+        - name: DT_RELEASE_BUILD_VERSION
+          value: 2.0.0.3356
+        - name: DT_RELEASE_STAGE
+          value: easytravel-nonprod
+        - name: DT_RELEASE_PRODUCT
+          value: easytravel
+        - name: ET_DATABASE_LOCATION
+          value: easytravel-mongodb-service:27017
+        - name: JAVA_OPTS
+          value: -Xms64g -Xmx128g
+        image: dynatrace/easytravel-backend:2.0.0.3356
+        imagePullPolicy: Always
+        name: easytravel-backend
+        ports:
+        - containerPort: 8009
+          protocol: TCP
+        - containerPort: 8005
+          protocol: TCP
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: "700Mi"
+          limits:
+            memory: "700Mi"
