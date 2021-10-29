@@ -10,6 +10,7 @@ metadata:
   namespace: easytravel-prod
 spec:
   replicas: 2
+  minReadySeconds: 60
   selector:
     matchLabels:
       easytravel-tier: easytravel-backend
