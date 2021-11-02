@@ -48,7 +48,7 @@ spec:
         - name: ET_DATABASE_LOCATION
           value: easytravel-mongodb-service:27017
         - name: JAVA_OPTS
-          value: -Xms256g -Xmx1024g
+          value: -Xms64g -Xmx128g
         image: dynatrace/easytravel-backend:2.0.0.3356
         imagePullPolicy: Always
         name: easytravel-backend
