@@ -38,6 +38,8 @@ spec:
       - env:
         - name: ET_FRONTEND_LOCATION
           value: easytravel-frontend-service:8080
+        - name: ET_ANGULAR_FRONTEND_LOCATION
+          value: easytravel-angular-frontend-service:8080
         - name: DT_RELEASE_VERSION
           value: 2.0.0.3356
         - name: DT_RELEASE_BUILD_VERSION
@@ -52,6 +54,8 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
+        - containerPort: 9079
+          protocol: TCP
 ---
 apiVersion: v1
 kind: Service
@@ -65,6 +69,24 @@ spec:
   ports:
   - protocol: TCP
     targetPort: 80
+    port: 80
+  selector:
+    easytravel-tier: easytravel-nginx
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-angular-nginx-service
+  name: easytravel-nonprod-angular-nginx-service
+  namespace: easytravel-nonprod
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - protocol: TCP
+    targetPort: 9079
     port: 80
   selector:
     easytravel-tier: easytravel-nginx
