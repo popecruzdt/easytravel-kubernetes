@@ -2,8 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    annotation-position: Deployment
   labels:
     easytravel-tier: easytravel-nginx
+    label-position: Deployment
   name: easytravel-nginx
   namespace: easytravel-prod
 spec:
@@ -13,15 +16,17 @@ spec:
       easytravel-tier: easytravel-nginx
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 1
+      maxUnavailable: 0
     type: RollingUpdate
   template:
     metadata:
       annotations:
+        annotation-position: Template
         version: 2.0.0.3356
       labels:
         easytravel-tier: easytravel-nginx
+        label-position: Template
         tier: nginx
         team: easytravel-devops
         app.kubernetes.io/name: easytravel-nginx
@@ -33,6 +38,8 @@ spec:
       - env:
         - name: ET_FRONTEND_LOCATION
           value: easytravel-frontend-service:8080
+        - name: ET_ANGULAR_FRONTEND_LOCATION
+          value: easytravel-angular-frontend-service:8080
         - name: DT_RELEASE_VERSION
           value: 2.0.0.3356
         - name: DT_RELEASE_BUILD_VERSION
@@ -47,6 +54,8 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
+        - containerPort: 9079
+          protocol: TCP
 ---
 apiVersion: v1
 kind: Service
@@ -60,6 +69,24 @@ spec:
   ports:
   - protocol: TCP
     targetPort: 80
+    port: 80
+  selector:
+    easytravel-tier: easytravel-nginx
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-angular-nginx-service
+  name: easytravel-prod-angular-nginx-service
+  namespace: easytravel-prod
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - protocol: TCP
+    targetPort: 9079
     port: 80
   selector:
     easytravel-tier: easytravel-nginx

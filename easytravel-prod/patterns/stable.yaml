@@ -4,12 +4,12 @@ kind: Deployment
 metadata:
   labels:
     easytravel-tier: easytravel-backend
-  name: easytravel-backend
-  namespace: easytravel-prod
   annotations:
     build: stable
+  name: easytravel-backend
+  namespace: easytravel-prod
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       easytravel-tier: easytravel-backend
@@ -21,32 +21,36 @@ spec:
   template:
     metadata:
       annotations:
-        version: 2.0.0.3256
-        build: stable
+        version: 2.0.0.3356
       labels:
         easytravel-tier: easytravel-backend
         tier: backend
         team: easytravel-devops
         app.kubernetes.io/name: easytravel-backend
         app.kubernetes.io/part-of: easytravel
-        app.kubernetes.io/version: 2.0.0.3256
+        app.kubernetes.io/version: 2.0.0.3356
+      annotations:
+        version: 2.0.0.3356
+        build: stable
       name: easytravel-backend
     spec:
       containers:
       - env:
-        - name: ET_DATABASE_LOCATION
-          value: easytravel-mongodb-service:27017
-        - name: JAVA_OPTS
-          value: -Xms256m -Xmx512m
+        - name: ET_FRONTEND_LOCATION
+          value: easytravel-frontend-service:8080
         - name: DT_RELEASE_VERSION
-          value: 2.0.0.3256
+          value: 2.0.0.3356
         - name: DT_RELEASE_BUILD_VERSION
-          value: 2.0.0.3256
+          value: 2.0.0.3356
         - name: DT_RELEASE_STAGE
           value: easytravel-prod
         - name: DT_RELEASE_PRODUCT
           value: easytravel
-        image: dynatrace/easytravel-backend:2.0.0.3256
+        - name: ET_DATABASE_LOCATION
+          value: easytravel-mongodb-service:27017
+        - name: JAVA_OPTS
+          value: -Xms256m -Xmx496m
+        image: dynatrace/easytravel-backend:2.0.0.3356
         imagePullPolicy: Always
         name: easytravel-backend
         ports:
@@ -91,3 +95,34 @@ spec:
           value: DatabaseCleanup
         image: dynatrace/easytravel-loadgen:latest
         name: easytravel-loadgen
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: angular-loadgenerator
+  name: angular-loadgenerator
+  namespace: easytravel-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-loadgenerator
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: angular-loadgenerator
+    spec:
+      containers:
+      - env:
+        - name: ET_ANGULAR_FRONTEND_URL
+          value: http://easytravel-prod-angular-nginx-service:80
+        - name: ET_APM_SERVER_DEFAULT
+          value: APM
+        image: dynatrace/easytravel-headless-loadgen:latest
+        name: easytravel-angular-loadgen

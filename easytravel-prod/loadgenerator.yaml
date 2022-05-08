@@ -29,5 +29,36 @@ spec:
           value: http://easytravel-backend-service:8080
         - name: ET_PROBLEMS
           value: DatabaseCleanup
-        image: dynatrace/easytravel-loadgen:2.0.0.3256
+        image: dynatrace/easytravel-loadgen:latest
         name: easytravel-loadgen
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: angular-loadgenerator
+  name: angular-loadgenerator
+  namespace: easytravel-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-loadgenerator
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: angular-loadgenerator
+    spec:
+      containers:
+      - env:
+        - name: ET_ANGULAR_FRONTEND_URL
+          value: http://easytravel-prod-angular-nginx-service:80
+        - name: ET_APM_SERVER_DEFAULT
+          value: APM
+        image: dynatrace/easytravel-headless-loadgen:latest
+        name: easytravel-angular-loadgen
