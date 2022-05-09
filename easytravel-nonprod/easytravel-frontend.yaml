@@ -43,7 +43,7 @@ spec:
         - name: ET_BACKEND_URL
           value: http://easytravel-backend-service:8080
         - name: JAVA_OPTS
-          value: -Xms256m -Xmx512m -XX:HeapDumpPath=/data/easytravel-frontend
+          value: -Xms256m -Xmx512m -XX:HeapDumpPath=/data/easytravel-frontend -XX:ErrorFile=/data/easytravel-frontend/hs_err_pid.log
         image: dynatrace/easytravel-frontend:2.0.0.3356
         imagePullPolicy: Always
         name: easytravel-frontend
