@@ -22,6 +22,7 @@ spec:
     metadata:
       annotations:
         version: 2.0.0.3356
+        build: stable
       labels:
         easytravel-tier: easytravel-backend
         tier: backend
