@@ -30,6 +30,6 @@ spec:
         - name: MONGODB_URI
           value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/admin?ssl=false
         image: percona/mongodb_exporter:0.32
-        name: mongodb_exporter
+        name: exporter-mongodb
         ports:
         - containerPort: 9121
