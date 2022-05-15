@@ -32,6 +32,6 @@ spec:
         image: percona/mongodb_exporter:0.32
         name: exporter-mongodb
         args:
-          - --log.level="debug"
+          - "--log.level="debug""
         ports:
         - containerPort: 9121
