@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: exporter-mongodb
+  name: exporter-mongodb
+  namespace: easytravel-nonprod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exporter-mongodb
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: exporter-mongodb
+    spec:
+      containers:
+      - env:
+        - name: MONGODB_URI
+          value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/admin?ssl=false
+        image: percona/mongodb_exporter:0.32
+        name: mongodb_exporter
