@@ -28,7 +28,7 @@ spec:
       containers:
       - env:
         - name: MONGODB_URI
-          value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/admin?ssl=true
+          value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/?ssl=false
         image: percona/mongodb_exporter:0.32
         name: exporter-mongodb
         ports:
