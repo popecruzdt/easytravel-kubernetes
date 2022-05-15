@@ -31,5 +31,7 @@ spec:
           value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/?ssl=false&authSource=admin
         image: percona/mongodb_exporter:0.32
         name: exporter-mongodb
+        args:
+          - --log.level="debug"
         ports:
         - containerPort: 9121
