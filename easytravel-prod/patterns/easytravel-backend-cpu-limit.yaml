@@ -5,11 +5,11 @@ metadata:
   labels:
     easytravel-tier: easytravel-backend
   annotations:
-    build: stable
+    build: cpu-limit
   name: easytravel-backend
   namespace: easytravel-prod
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       easytravel-tier: easytravel-backend
@@ -22,7 +22,7 @@ spec:
     metadata:
       annotations:
         version: 2.0.0.3356
-        build: stable
+        build: cpu-limit
       labels:
         easytravel-tier: easytravel-backend
         tier: backend
@@ -32,7 +32,7 @@ spec:
         app.kubernetes.io/version: 2.0.0.3356
       annotations:
         version: 2.0.0.3356
-        build: stable
+        build: cpu-limit
       name: easytravel-backend
     spec:
       containers:
