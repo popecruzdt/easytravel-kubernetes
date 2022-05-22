@@ -2,14 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    build: stable
   labels:
     easytravel-tier: easytravel-backend
+  annotations:
+    build: stable
   name: easytravel-backend
   namespace: easytravel-prod
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       easytravel-tier: easytravel-backend
@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       annotations:
-        version: 2.0.0.3256
+        version: 2.0.0.3356
         build: stable
       labels:
         easytravel-tier: easytravel-backend
@@ -29,16 +29,29 @@ spec:
         team: easytravel-devops
         app.kubernetes.io/name: easytravel-backend
         app.kubernetes.io/part-of: easytravel
-        app.kubernetes.io/version: 2.0.0.3256
+        app.kubernetes.io/version: 2.0.0.3356
+      annotations:
+        version: 2.0.0.3356
+        build: stable
       name: easytravel-backend
     spec:
       containers:
       - env:
+        - name: ET_FRONTEND_LOCATION
+          value: easytravel-frontend-service:8080
+        - name: DT_RELEASE_VERSION
+          value: 2.0.0.3356
+        - name: DT_RELEASE_BUILD_VERSION
+          value: 2.0.0.3356
+        - name: DT_RELEASE_STAGE
+          value: easytravel-prod
+        - name: DT_RELEASE_PRODUCT
+          value: easytravel
         - name: ET_DATABASE_LOCATION
           value: easytravel-mongodb-service:27017
         - name: JAVA_OPTS
-          value: -Xms256m -Xmx512m
-        image: dynatrace/easytravel-backend:2.0.0.3256
+          value: -Xms256m -Xmx496m
+        image: dynatrace/easytravel-backend:2.0.0.3356
         imagePullPolicy: Always
         name: easytravel-backend
         ports:
@@ -54,30 +67,4 @@ spec:
             cpu: "50m"
           limits:
             memory: "700Mi"
-            cpu: "50m"
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    easytravel-tier: easytravel-backend-service
-  name: easytravel-backend-service
-  namespace: easytravel-prod
-spec:
-  ports:
-  - name: port5
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  - name: port3
-    port: 8009
-    protocol: TCP
-    targetPort: 8009
-  - name: port4
-    port: 8005
-    protocol: TCP
-    targetPort: 8005
-  selector:
-    easytravel-tier: easytravel-backend
-  sessionAffinity: None
-  type: ClusterIP
+            cpu: "150m"
