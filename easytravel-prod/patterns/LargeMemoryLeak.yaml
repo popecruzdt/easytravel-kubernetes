@@ -9,14 +9,14 @@ metadata:
   annotations:
     build: LargeMemoryLeak
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       easytravel-tier: easytravel-backend
   strategy:
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 1
+      maxUnavailable: 0
     type: RollingUpdate
   template:
     metadata:
