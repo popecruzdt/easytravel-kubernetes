@@ -45,6 +45,11 @@ spec:
           protocol: TCP
         - containerPort: 28017
           protocol: TCP
+        resources:
+          requests:
+            memory: "500Mi"
+          limits:
+            memory: "500Mi"
 ---
 apiVersion: v1
 kind: Service

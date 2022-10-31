@@ -31,6 +31,11 @@ spec:
           value: DatabaseCleanup
         image: dynatrace/easytravel-loadgen:latest
         name: easytravel-loadgen
+        resources:
+          requests:
+            memory: "500Mi"
+          limits:
+            memory: "500Mi"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -62,3 +67,8 @@ spec:
           value: APM
         image: dynatrace/easytravel-headless-loadgen:latest
         name: easytravel-angular-loadgen
+        resources:
+          requests:
+            memory: "500Mi"
+          limits:
+            memory: "500Mi"

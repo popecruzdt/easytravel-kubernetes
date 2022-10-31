@@ -56,6 +56,11 @@ spec:
           protocol: TCP
         - containerPort: 9079
           protocol: TCP
+        resources:
+          requests:
+            memory: "150Mi"
+          limits:
+            memory: "150Mi"
 ---
 apiVersion: v1
 kind: Service
