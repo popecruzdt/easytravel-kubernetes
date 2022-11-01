@@ -27,14 +27,14 @@ spec:
     spec:
       containers:
         - image: percona/mongodb_exporter:0.32
-        name: exporter-mongodb
-        ports:
-          - containerPort: 9121
-        resources:
-          requests:
-            memory: "25Mi"
-          limits:
-            memory: "25Mi"
-        env:
-          - name: MONGODB_URI
-            value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/?ssl=false&authSource=admin
+          name: exporter-mongodb
+          ports:
+            - containerPort: 9121
+          resources:
+            requests:
+              memory: "25Mi"
+            limits:
+              memory: "25Mi"
+          env:
+            - name: MONGODB_URI
+              value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/?ssl=false&authSource=admin
