@@ -26,7 +26,7 @@ spec:
          metrics.dynatrace.com/secure: 'false'
     spec:
       containers:
-        image: percona/mongodb_exporter:0.32
+        - image: percona/mongodb_exporter:0.32
         name: exporter-mongodb
         ports:
           - containerPort: 9121
