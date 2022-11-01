@@ -28,8 +28,6 @@ spec:
       containers:
         image: percona/mongodb_exporter:0.32
         name: exporter-mongodb
-        args:
-          - "--log.level="info""
         ports:
           - containerPort: 9121
         resources:
