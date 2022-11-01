@@ -26,17 +26,17 @@ spec:
          metrics.dynatrace.com/secure: 'false'
     spec:
       containers:
-      - env:
-        - name: MONGODB_URI
-          value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/?ssl=false&authSource=admin
         image: percona/mongodb_exporter:0.32
         name: exporter-mongodb
         args:
           - "--log.level="info""
         ports:
-        - containerPort: 9121
+          - containerPort: 9121
         resources:
           requests:
             memory: "25Mi"
           limits:
             memory: "25Mi"
+        env:
+          - name: MONGODB_URI
+            value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/?ssl=false&authSource=admin
