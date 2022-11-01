@@ -35,3 +35,8 @@ spec:
           - "--log.level="info""
         ports:
         - containerPort: 9121
+        resources:
+          requests:
+            memory: "25Mi"
+          limits:
+            memory: "25Mi"
