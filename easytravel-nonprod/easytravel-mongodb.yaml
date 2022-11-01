@@ -13,8 +13,8 @@ spec:
       easytravel-tier: easytravel-mongodb
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 1
+      maxUnavailable: 0
     type: RollingUpdate
   template:
     metadata:
@@ -45,6 +45,11 @@ spec:
           protocol: TCP
         - containerPort: 28017
           protocol: TCP
+        resources:
+          requests:
+            memory: "500Mi"
+          limits:
+            memory: "500Mi"
 ---
 apiVersion: v1
 kind: Service
