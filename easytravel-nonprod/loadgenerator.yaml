@@ -13,8 +13,8 @@ spec:
       app: loadgenerator
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 1
+      maxUnavailable: 1
     type: RollingUpdate
   template:
     metadata:
@@ -31,6 +31,11 @@ spec:
           value: DatabaseCleanup
         image: dynatrace/easytravel-loadgen:latest
         name: easytravel-loadgen
+        resources:
+          requests:
+            memory: "500Mi"
+          limits:
+            memory: "500Mi"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -46,8 +51,8 @@ spec:
       app: angular-loadgenerator
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 1
+      maxUnavailable: 1
     type: RollingUpdate
   template:
     metadata:
@@ -62,3 +67,8 @@ spec:
           value: APM
         image: dynatrace/easytravel-headless-loadgen:latest
         name: easytravel-angular-loadgen
+        resources:
+          requests:
+            memory: "500Mi"
+          limits:
+            memory: "500Mi"
