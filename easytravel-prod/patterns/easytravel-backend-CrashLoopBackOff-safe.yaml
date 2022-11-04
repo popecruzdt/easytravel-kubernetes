@@ -9,7 +9,7 @@ metadata:
   name: easytravel-backend
   namespace: easytravel-prod
 spec:
-  replicas: 2
+  replicas: 1
   minReadySeconds: 60
   selector:
     matchLabels:
