@@ -50,7 +50,7 @@ spec:
           value: -Xms256m -Xmx496m
         image: dynatrace/easytravel-backend:2.0.0.3356
         imagePullPolicy: Always
-        name: easytravel-backend
+        name: easytravel-backend-canary
         ports:
         - containerPort: 8009
           protocol: TCP
