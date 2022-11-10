@@ -6,7 +6,7 @@ metadata:
     easytravel-tier: easytravel-backend
   annotations:
     build: canary
-  name: easytravel-backend
+  name: easytravel-backend-canary
   namespace: easytravel-prod
 spec:
   replicas: 1
