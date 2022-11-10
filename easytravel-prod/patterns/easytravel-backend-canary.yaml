@@ -30,10 +30,7 @@ spec:
         app.kubernetes.io/name: easytravel-backend
         app.kubernetes.io/part-of: easytravel
         app.kubernetes.io/version: 2.0.1.3356
-      annotations:
-        version: 2.0.1.3356
-        build: stable
-      name: easytravel-backend
+      name: easytravel-backend-canary
     spec:
       containers:
       - env:
