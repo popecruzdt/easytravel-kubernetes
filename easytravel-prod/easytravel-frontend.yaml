@@ -19,6 +19,7 @@ spec:
   template:
     metadata:
       labels:
+        persistence: ephemeral 
         easytravel-tier: easytravel-frontend
         tier: frontend
         team: easytravel-devops

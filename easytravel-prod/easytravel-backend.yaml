@@ -24,6 +24,7 @@ spec:
         version: 2.0.0.3356
         build: stable
       labels:
+        persistence: ephemeral 
         easytravel-tier: easytravel-backend
         tier: backend
         team: easytravel-devops
