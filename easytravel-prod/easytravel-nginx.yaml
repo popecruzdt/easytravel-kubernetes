@@ -25,6 +25,7 @@ spec:
         annotation-position: Template
         version: 2.0.0.3356
       labels:
+        persistence: ephemeral 
         easytravel-tier: easytravel-nginx
         label-position: Template
         tier: nginx
