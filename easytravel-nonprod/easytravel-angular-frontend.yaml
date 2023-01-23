@@ -21,6 +21,7 @@ spec:
       annotations:
         version: 2.0.0.3356
       labels:
+        persistence: ephemeral 
         easytravel-tier: easytravel-angular-frontend
         tier: angular-frontend
         team: easytravel-devops
