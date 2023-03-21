@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       annotations:
-        version: 2.0.0.3356
+        version: 2.0.0.3408
       labels:
         persistence: ephemeral 
         easytravel-tier: easytravel-frontend
@@ -27,16 +27,16 @@ spec:
         team: easytravel-devops
         app.kubernetes.io/name: easytravel-frontend
         app.kubernetes.io/part-of: easytravel
-        app.kubernetes.io/version: 2.0.0.3356
+        app.kubernetes.io/version: 2.0.0.3408
     spec:
       containers:
       - env:
         - name: ET_FRONTEND_LOCATION
           value: easytravel-frontend-service:8080
         - name: DT_RELEASE_VERSION
-          value: 2.0.0.3356
+          value: 2.0.0.3408
         - name: DT_RELEASE_BUILD_VERSION
-          value: 2.0.0.3356
+          value: 2.0.0.3408
         - name: DT_RELEASE_STAGE
           value: easytravel-nonprod
         - name: DT_RELEASE_PRODUCT
@@ -45,7 +45,7 @@ spec:
           value: http://easytravel-backend-service:8080
         - name: JAVA_OPTS
           value: -Xms256m -Xmx512m -XX:HeapDumpPath=/data/easytravel-frontend -XX:ErrorFile='/data/easytravel-frontend/hs_err_pid%p.log'
-        image: dynatrace/easytravel-frontend:2.0.0.3356
+        image: dynatrace/easytravel-frontend:2.0.0.3408
         imagePullPolicy: Always
         name: easytravel-frontend
         ports:
