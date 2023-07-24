@@ -4,14 +4,13 @@ kind: Deployment
 metadata:
   annotations:
     annotation-position: Deployment
-    test-annotation: testing
   labels:
     easytravel-tier: easytravel-nginx
     label-position: Deployment
   name: easytravel-nginx
   namespace: easytravel-prod
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       easytravel-tier: easytravel-nginx
