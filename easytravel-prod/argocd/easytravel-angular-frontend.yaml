@@ -1,0 +1,85 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    easytravel-tier: easytravel-angular-frontend
+  name: easytravel-angular-frontend
+  namespace: easytravel-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      easytravel-tier: easytravel-angular-frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        version: 2.0.0.3356
+      labels:
+        persistence: ephemeral 
+        easytravel-tier: easytravel-angular-frontend
+        tier: angular-frontend
+        team: easytravel-devops
+        app.kubernetes.io/name: easytravel-angular-frontend
+        app.kubernetes.io/part-of: easytravel
+        app.kubernetes.io/version: 2.0.0.3356
+    spec:
+      containers:
+      - env:
+        - name: ET_FRONTEND_LOCATION
+          value: easytravel-frontend-service:8080
+        - name: DT_RELEASE_VERSION
+          value: 2.0.0.3356
+        - name: DT_RELEASE_BUILD_VERSION
+          value: 2.0.0.3356
+        - name: DT_RELEASE_STAGE
+          value: easytravel-prod
+        - name: DT_RELEASE_PRODUCT
+          value: easytravel
+        - name: ET_BACKEND_URL
+          value: http://easytravel-backend-service:8080
+        - name: JAVA_OPTS
+          value: -Xms256m -Xmx512m
+        image: dynatrace/easytravel-angular-frontend:2.0.0.3356
+        imagePullPolicy: Always
+        name: easytravel-angular-frontend
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8280
+          protocol: TCP
+        resources:
+          requests:
+            memory: "500Mi"
+          limits:
+            memory: "500Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    easytravel-tier: easytravel-angular-frontend
+  name: easytravel-angular-frontend-service
+  namespace: easytravel-prod
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: port1
+    nodePort: 31080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: port2
+    nodePort: 31280
+    port: 8280
+    protocol: TCP
+    targetPort: 8280
+  selector:
+    easytravel-tier: easytravel-angular-frontend
+  sessionAffinity: None
+  type: NodePort
