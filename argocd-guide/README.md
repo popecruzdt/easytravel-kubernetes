@@ -34,6 +34,11 @@ obtain initial password
 argocd admin initial-password -n argocd
 ```
 
+backup if the previous command fails
+```
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+
 connect to argocd using cli with user, password, and external facing URL
 ```
 argocd login <EXTERNAL-IP>
