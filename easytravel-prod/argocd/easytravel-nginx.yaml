@@ -11,6 +11,7 @@ metadata:
   namespace: easytravel-prod
 spec:
   replicas: 2
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       easytravel-tier: easytravel-nginx
