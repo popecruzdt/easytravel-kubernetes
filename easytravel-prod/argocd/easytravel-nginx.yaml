@@ -10,7 +10,7 @@ metadata:
   name: easytravel-nginx
   namespace: easytravel-prod
 spec:
-  replicas: 2
+  replicas: 3
   revisionHistoryLimit: 2
   selector:
     matchLabels:
