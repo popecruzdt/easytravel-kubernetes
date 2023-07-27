@@ -47,6 +47,7 @@ metadata:
   namespace: easytravel-prod
 spec:
   replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: angular-loadgenerator
