@@ -49,7 +49,7 @@ spec:
           value: easytravel-prod
         - name: DT_RELEASE_PRODUCT
           value: easytravel
-        - name: ET_DATABASE_LOCATION_CHAOS
+        - name: ET_DATABASE_LOCATION
           value: easytravel-mongodb-service:27017
         - name: JAVA_OPTS
           value: -Xms256m -Xmx496m
