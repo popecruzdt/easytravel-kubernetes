@@ -22,7 +22,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Namespace deployment event
+      - name: deployment events
         uses: dynatrace-oss/dynatrace-github-action@v9
         with:
           url: '${{ secrets.DT_API_BASE_URL }}'
@@ -31,6 +31,20 @@ jobs:
             - title: "GitHub repository code push"
               type: CUSTOM_DEPLOYMENT
               entitySelector: 'type("CLOUD_APPLICATION_NAMESPACE"),tag("argocd-app:easytravel-prod")'
+              properties:
+                description: "Push to branch ${{ github.ref }}"
+                source: GitHub
+                project: "${{ github.repository }}"
+                branch: "${{ github.ref }}"
+                event: "${{ github.event_name }}"
+                owner: "${{ github.repository_owner }}"
+                commit: "${{ github.sha }}"
+                user: "${{ github.triggering_actor }}"
+                url: "https://github.com/popecruzdt/easytravel-kubernetes"
+                job: "${{ github.job }}"
+            - title: "GitHub repository code push"
+              type: CUSTOM_DEPLOYMENT
+              entitySelector: 'type("CLOUD_APPLICATION"),tag("argocd-app:easytravel-prod")'
               properties:
                 description: "Push to branch ${{ github.ref }}"
                 source: GitHub
