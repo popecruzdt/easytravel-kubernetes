@@ -56,4 +56,18 @@ jobs:
                 user: "${{ github.triggering_actor }}"
                 url: "https://github.com/popecruzdt/easytravel-kubernetes"
                 job: "${{ github.job }}"
+            - title: "GitHub repository code push"
+              type: CUSTOM_DEPLOYMENT
+              entitySelector: 'type("SERVICE"),tag("argocd-app:easytravel-prod")'
+              properties:
+                description: "Push to branch ${{ github.ref }}"
+                source: GitHub
+                project: "${{ github.repository }}"
+                branch: "${{ github.ref }}"
+                event: "${{ github.event_name }}"
+                owner: "${{ github.repository_owner }}"
+                commit: "${{ github.sha }}"
+                user: "${{ github.triggering_actor }}"
+                url: "https://github.com/popecruzdt/easytravel-kubernetes"
+                job: "${{ github.job }}"
                 
