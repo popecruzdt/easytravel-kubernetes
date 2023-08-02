@@ -23,7 +23,7 @@ spec:
     metadata:
       annotations:
         version: 2.0.0.3356
-        build: chaos
+        build: stable
       labels:
         persistence: ephemeral 
         easytravel-tier: easytravel-backend
@@ -47,7 +47,7 @@ spec:
         - name: DT_RELEASE_PRODUCT
           value: easytravel
         - name: ET_DATABASE_LOCATION
-          value: easytravel-mongodb-service-chaos:27017
+          value: easytravel-mongodb-service:27017
         - name: JAVA_OPTS
           value: -Xms256m -Xmx496m
         image: dynatrace/easytravel-backend:2.0.0.3356
