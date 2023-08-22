@@ -22,7 +22,7 @@ spec:
         app: exporter-mongodb
       annotations:
          metrics.dynatrace.com/scrape: 'true'
-         metrics.dynatrace.com/port: '9121'
+         metrics.dynatrace.com/port: '9216'
          metrics.dynatrace.com/secure: 'false'
     spec:
       containers:
