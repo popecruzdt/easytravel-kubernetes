@@ -43,3 +43,19 @@ spec:
           env:
             - name: MONGODB_URI
               value: mongodb://etAdmin:adminadmin@easytravel-mongodb-service:27017/?ssl=false&authSource=admin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: exporter-service-mongodb
+  labels:
+    app: exporter-mongodb
+spec:
+  selector:
+    app: exporter-mongodb
+  ports:
+    - port: 9216
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+  type: ClusterIP
