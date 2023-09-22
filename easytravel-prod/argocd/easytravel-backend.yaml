@@ -34,6 +34,8 @@ spec:
         app.kubernetes.io/version: 2.0.0.3356
       name: easytravel-backend
     spec:
+      nodeSelector:
+        group: small
       containers:
       - env:
         - name: ET_FRONTEND_LOCATION

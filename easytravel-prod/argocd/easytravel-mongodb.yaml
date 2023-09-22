@@ -29,6 +29,8 @@ spec:
         app.kubernetes.io/part-of: easytravel
         app.kubernetes.io/version: 2.0.0.3156
     spec:
+      nodeSelector:
+        group: small
       containers:
       - env:
         - name: DT_RELEASE_VERSION
