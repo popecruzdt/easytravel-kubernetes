@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   labels:
     easytravel-tier: easytravel-backend
+    dt.owner: easytravel-devops
   annotations:
     build: stable
   name: easytravel-backend
@@ -29,6 +30,7 @@ spec:
         easytravel-tier: easytravel-backend
         tier: backend
         team: easytravel-devops
+        dt.owner: easytravel-devops
         app.kubernetes.io/name: easytravel-backend
         app.kubernetes.io/part-of: easytravel
         app.kubernetes.io/version: 2.0.0.3356

@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   labels:
     easytravel-tier: easytravel-mongodb
+    dt.owner: easytravel-devops
   name: easytravel-mongodb
   namespace: easytravel-prod
 spec:
@@ -25,6 +26,7 @@ spec:
       labels:
         easytravel-tier: easytravel-mongodb
         tier: database
+        dt.owner: easytravel-devops
         app.kubernetes.io/name: easytravel-mongodb
         app.kubernetes.io/part-of: easytravel
         app.kubernetes.io/version: 2.0.0.3156

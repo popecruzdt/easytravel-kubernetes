@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   labels:
     easytravel-tier: easytravel-angular-frontend
+    dt.owner: easytravel-devops
   name: easytravel-angular-frontend
   namespace: easytravel-prod
 spec:
@@ -26,6 +27,7 @@ spec:
         easytravel-tier: easytravel-angular-frontend
         tier: angular-frontend
         team: easytravel-devops
+        dt.owner: easytravel-devops
         app.kubernetes.io/name: easytravel-angular-frontend
         app.kubernetes.io/part-of: easytravel
         app.kubernetes.io/version: 2.0.0.3356

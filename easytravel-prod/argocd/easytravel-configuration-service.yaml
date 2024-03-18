@@ -4,6 +4,7 @@ kind: Service
 metadata:
   labels:
     easytravel-tier: easytravel-configuration-service
+    dt.owner: easytravel-devops
   name: easytravel-configuration-service
   namespace: easytravel-prod
 spec:
