@@ -30,7 +30,7 @@ spec:
           value: http://easytravel-backend-service:8080
         - name: ET_PROBLEMS
           value: DatabaseCleanup
-        image: dynatrace/easytravel-loadgen:latest
+        image: dynatrace/easytravel-loadgen:2.0.0.3256
         name: easytravel-loadgen
         resources:
           requests:
@@ -67,7 +67,7 @@ spec:
           value: http://easytravel-prod-angular-nginx-service:80
         - name: ET_APM_SERVER_DEFAULT
           value: APM
-        image: dynatrace/easytravel-headless-loadgen:latest
+        image: dynatrace/easytravel-headless-loadgen:2.0.0.3256
         name: easytravel-angular-loadgen
         resources:
           requests:
