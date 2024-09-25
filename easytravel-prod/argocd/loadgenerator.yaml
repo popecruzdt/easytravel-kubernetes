@@ -67,7 +67,7 @@ spec:
           value: http://easytravel-prod-angular-nginx-service:80
         - name: ET_APM_SERVER_DEFAULT
           value: APM
-        image: dynatrace/easytravel-headless-loadgen:2.0.0.3256
+        image: dynatrace/easytravel-headless-loadgen:2.0.0.3356
         name: easytravel-angular-loadgen
         resources:
           requests:
