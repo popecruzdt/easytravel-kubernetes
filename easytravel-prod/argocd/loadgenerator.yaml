@@ -30,7 +30,7 @@ spec:
           value: http://easytravel-backend-service:8080
         - name: ET_PROBLEMS
           value: DatabaseCleanup
-        image: dynatrace/easytravel-loadgen:2.0.0.3256
+        image: dynatrace/easytravel-loadgen:2.0.0.3599
         name: easytravel-loadgen
         resources:
           requests:
